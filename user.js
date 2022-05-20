@@ -1,30 +1,10 @@
-const mongoose = require('mongoose')
-const userSchema = new mongoose.Schema({
-    username: {
-        type: String,
-        required: true,
-    },
-    email: {
-        type: String,
-        trim: true,
-        unique: true,
-    },
-    password: {
-        type: String,
-        required: true,
-    },
-    mobilenumber:{
-        type:Number,
-        required:true
-    },
-    // date:{
-    //     type:Date,
-    //     required:true
-    // }, 
-    Amount:{
-        type:Number,
-    }
-})
-module.exports = mongoose.model('usercol', userSchema)
+const express = require('express');
+const router = express.Router();
+const authel = require('../helper/auth-log-reg')
+// const { validatesignup, userValidation } = require('../middleware/user')
+router.post('/signup',  authel.signup)
+// router.post('/signin',  authel.signin)
+router.post('/deposit', authel.deposit)
+router.post('/check', authel.check)
 
-
+module.exports = router;
